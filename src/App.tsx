@@ -122,13 +122,11 @@ function App() {
         <section className='header-bottom'>
           <span>{keyDown}</span>
           <input type='text' placeholder='Your word' value={word}
-            onKeyUp={(e) => {
-              setKeyDown(e.code)
-            }}
             onChange={(e) => {
               setWord(e.target.value)
             }}
             onKeyDown={(e) => { 
+              setKeyDown(e.key)
               if (e.code === 'Enter' || e.code === 'NumpadEnter') {
                 setFetchedData([])
                 setIsSubmited(true)
