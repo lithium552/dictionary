@@ -35,7 +35,6 @@ function App() {
   const [isPlay, setIsPlay] = useState(false)
   const [font, setFont] = useState('serif')
   const [iconRotate, setIconRotate] = useState('')
-  const [keyDown, setKeyDown] = useState('')
   const [isSubmited, setIsSubmited] = useState(false)
   const [word, setWord] = useState('')
   const [darkTheme, setDarkTheme] = useState(false)
@@ -96,14 +95,12 @@ function App() {
                   style={{ color: colorWhite() }}
                   onMouseLeave={() => setIconRotate('')}
                   onClick={() => setIconRotate('icon-rotate')}
-                  // onBlur={() => setIconRotate('')}
                   onChange={(e) => setFont(e.target.value)}>
                   <option value='serif'>Serif</option>
                   <option value='sans-serif'>Sans-serif</option>
                   <option value='monospace'>Monospace</option>
                 </select>
                 <SlArrowDown className={iconRotate} />
-                {/* <span>Serif</span> */}
               </div>
               <div>{darkTheme ?
                 (<>
@@ -120,14 +117,12 @@ function App() {
           </div>
         </section>
         <section className='header-bottom'>
-          <span>{keyDown}</span>
           <input type='text' placeholder='Your word' value={word}
             onChange={(e) => {
               setWord(e.target.value)
             }}
             onKeyDown={(e) => { 
-              setKeyDown(e.key)
-              if (e.code === 'Enter' || e.code === 'NumpadEnter') {
+              if (e.code === 'Enter' || e.code === 'NumpadEnter' || e.key === 'Enter') {
                 setFetchedData([])
                 setIsSubmited(true)
                 setWordNotFound(false)
