@@ -35,6 +35,7 @@ function App() {
   const [isPlay, setIsPlay] = useState(false)
   const [font, setFont] = useState('serif')
   const [iconRotate, setIconRotate] = useState('')
+  const [keyDown, setKeyDown] = useState('')
   const [isSubmited, setIsSubmited] = useState(false)
   const [word, setWord] = useState('')
   const [darkTheme, setDarkTheme] = useState(false)
@@ -119,11 +120,13 @@ function App() {
           </div>
         </section>
         <section className='header-bottom'>
+          <span>{keyDown}</span>
           <input type='text' placeholder='Your word' value={word}
             onChange={(e) => {
               setWord(e.target.value)
             }}
             onKeyDown={(e) => {
+              setKeyDown(e.code)
               if (e.code === 'Enter' || e.code === 'NumpadEnter') {
                 setFetchedData([])
                 setIsSubmited(true)
